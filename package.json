@@ -2,9 +2,9 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "This is the first time The try node js",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon --inspect src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,9 +24,11 @@
   },
   "homepage": "https://github.com/hacThe/node__js-blog#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.3"
   },
   "devDependencies": {
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.12"
   }
 }
