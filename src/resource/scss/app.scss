@@ -5,9 +5,3 @@ h1{
 h2{
     color: red;
 }
-h1::after{
-    background-color: red;
-    content: "";
-    width: 100px;
-    height: 100px;
-}
