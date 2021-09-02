@@ -3,19 +3,19 @@
 <form action="/course/store" method="POST">
   <div class="form-group">
     <label for="name">Tên khóa học</label>
-    <input type="text" class="form-control" id="name">
+    <input type="text" class="form-control" value="{{course.name}}" id="name">
   </div>
   <div class="form-group">
     <label for="description">Mô tả khóa học</label>
-    <input type="text" class="form-control" id="description">
+    <input type="text" class="form-control" value="{{course.name}}" id="description">
   </div>
   <div class="form-group">
     <label for="videoid">Video ID</label>
-    <input type="text" class="form-control" id="videoid">
+    <input type="text" class="form-control" value="{{course.name}}" id="videoid">
   </div>
   <div class="form-group">
     <label for="level">Độ khó</label>
-    <input type="text" class="form-control" id="level">
+    <input type="text" class="form-control" value="{{course.name}}" id="level">
   </div>
   <button type="submit" class="btn btn-primary">Thêm khóa học</button>
 </form>
@@ -24,26 +24,27 @@
 
   <!-- NHỚ GẮN NAME VÔ CHO MẤY FORM NHA CHA NỘI -->
 <div class="mt-4">
-    <h3>Đăng khóa học</h3>
+    <h3>Sửa khóa học {{course._id}}</h3>
 
-    <form method="POST" action="/course/store">
+    <form method="POST" action="/course/{{course._id}}/update">
         <div class="form-group">
             <label for="name">Tên khóa học</label>
-            <input type="text" class="form-control" id="name" name="name">
+            <input type="text" class="form-control" value="{{course.name}}" id="name" name="name">
         </div>
         <div class="form-group">
             <label for="description">Mô tả</label>
-          <textarea class="form-control"  id="description" name="description"></textarea>
+            <textarea class="form-control"  id="description" name="description">{{course.description}}</textarea>
+
         </div>
         <div class="form-group">
             <label for="videoid">Video ID</label>
-            <input type="text" class="form-control" id="videoid" name="videoid">
+            <input type="text" class="form-control" value="{{course.videoid}}" id="videoid" name="videoid">
         </div>
         <div class="form-group">
             <label for="level">Trình độ</label>
-            <input type="text" class="form-control" id="level" name="level">
+            <input type="text" class="form-control" value="{{course.level}}" id="level" name="level">
         </div>
         
-        <button type="submit" class="btn btn-primary">Thêm khóa học</button>
+        <button type="submit" class="btn btn-primary">Lưu chỉnh sửa</button>
     </form>
 </div>

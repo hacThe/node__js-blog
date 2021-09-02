@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const Course = require('../models/course');
 const ConvertToOpenObject = require('../../util/mongoose');
 const course = require('../models/course');
+const { render } = require('node-sass');
 
 class CourseController {
     // GET /news
@@ -21,14 +22,31 @@ class CourseController {
 
 
     store(req,res,next){
-        const formData = req.body;
-        formData.image = `https://img.youtube.com/vi/${req.body.videoid}/sddefault.jpg`;
-        const newCourse = new Course(formData);
-        newCourse.save().then(()=> res.redirect('/'))
-        .catch(error => {
-            
-        })
+        req.body.thumbnail = `https://img.youtube.com/vi/${req.body.videoid}/sddefault.jpg`;
+        const course = new Course(req.body);
+        course
+            .save()
+            .then(() => res.redirect('/'))
+            .catch((error) => {});
     }
+
+    edit(req, res, next){
+        Course.findById(req.params.id).lean()
+        .then(course => {
+            res.render('course/edit', {course});
+        }).catch(next);
+
+    }
+
+    update(req, res, next){
+        Course.findById(req.params.id).lean()
+        .then(course => {
+            res.render('course/edit', {course});
+        }).catch(next);
+
+    }
+
+    
 }
 
 module.exports = new CourseController();
