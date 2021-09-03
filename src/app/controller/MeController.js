@@ -11,6 +11,12 @@ class MeController {
         .catch(next);
     }
 
+    deletedCourse(req, res, next){
+        Course.findDeleted({}).lean()
+        .then(course => res.render('me/deleted-courses', {course}))
+        .catch(next);
+    }
+
     
 }
 

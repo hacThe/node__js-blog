@@ -26,7 +26,7 @@ class CourseController {
         const course = new Course(req.body);
         course
             .save()
-            .then(() => res.redirect('/'))
+            .then(() => res.redirect('/me/stored/courses'))
             .catch((error) => {});
     }
 
@@ -39,12 +39,34 @@ class CourseController {
     }
 
     update(req, res, next){
-        Course.findById(req.params.id).lean()
-        .then(course => {
-            res.render('course/edit', {course});
-        }).catch(next);
+        Course.updateOne({ _id: req.params.id}, req.body)
+        .then(()=> res.redirect('/me/stored/courses'))
+        .catch(next);
 
     }
+
+    destroy(req, res, next) {
+        Course.delete({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+    restore(req, res, next) {
+        Course.restore({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+    remove(req, res, next) {
+        Course.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+    // Get gửi yêu cầu lên server yêu cầu trả về dl
+    // Post gửi yêu cầu lên server kèm dl
+    // put patch chỉnh sửa dữ liệu
+    
 
     
 }
